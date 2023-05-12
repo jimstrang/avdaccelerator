@@ -36,6 +36,7 @@ Foreach ($HostPoolID in $AVDResourceIDs) {
 	$SessionHostNames = Get-AzWvdSessionHost -SubscriptionId $HostPoolSubID -ResourceGroupName $HostPoolRG -HostPoolName $HostPoolName
 	foreach($sessionHost in $SessionHostNames){
 		If ($sessionHost.Name -ne 'null') {
+			Start-Sleep -Seconds 1
 			$VMRefName = ($sessionHost.Name -split '/')[1]  
 			$DotLocation = $VMRefName.IndexOf('.')
 			If ($DotLocation -ne -1) { $VM = $VMRefName.Substring(0, $DotLocation)}
